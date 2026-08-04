@@ -28,8 +28,17 @@ const SOCIALS = [
 
 export function Footer() {
     return (
-        <footer className="border-t border-border bg-surface">
-            <div className="shell py-16 lg:py-20">
+        <footer className="relative overflow-hidden border-t border-border bg-surface">
+            <div
+                aria-hidden
+                className="pointer-events-none absolute -bottom-4 left-1/2 w-full -translate-x-1/2 select-none text-center"
+            >
+                <span className="inline-block text-[15vw] font-black uppercase leading-none tracking-[-0.05em] text-transparent bg-gradient-to-b from-foreground/12 via-foreground/[0.04] to-transparent bg-clip-text">
+                    ZALLOCO
+                </span>
+            </div>
+
+            <div className="shell relative py-16 lg:py-20">
                 <div className="grid gap-12 lg:grid-cols-[1.5fr_1fr_1fr_1.2fr]">
                     <div>
                         <Link href="/" className="flex min-w-0 items-center gap-3">
@@ -70,8 +79,11 @@ export function Footer() {
                     </div>
 
                     <div>
-                        <h3 className="text-sm font-semibold uppercase tracking-[0.16em] text-foreground">
-                            Quick Links
+                        <span className="font-mono text-[11px] font-medium tracking-[0.15em] text-muted-foreground">
+                            SEC.01
+                        </span>
+                        <h3 className="mt-2 text-sm font-semibold uppercase tracking-[0.16em] text-foreground">
+                            Navigate
                         </h3>
                         <ul className="mt-5 space-y-3">
                             {LINKS.map((l) => (
@@ -88,7 +100,10 @@ export function Footer() {
                     </div>
 
                     <div>
-                        <h3 className="text-sm font-semibold uppercase tracking-[0.16em] text-foreground">
+                        <span className="font-mono text-[11px] font-medium tracking-[0.15em] text-muted-foreground">
+                            SEC.02
+                        </span>
+                        <h3 className="mt-2 text-sm font-semibold uppercase tracking-[0.16em] text-foreground">
                             Categories
                         </h3>
                         <ul className="mt-5 space-y-3">
@@ -106,7 +121,10 @@ export function Footer() {
                     </div>
 
                     <div>
-                        <h3 className="text-sm font-semibold uppercase tracking-[0.16em] text-foreground">
+                        <span className="font-mono text-[11px] font-medium tracking-[0.15em] text-muted-foreground">
+                            SEC.03
+                        </span>
+                        <h3 className="mt-2 text-sm font-semibold uppercase tracking-[0.16em] text-foreground">
                             Contact
                         </h3>
                         <ul className="mt-5 space-y-4 text-sm text-muted-foreground">
@@ -136,11 +154,11 @@ export function Footer() {
                     </div>
                 </div>
 
-                <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-border pt-8 text-xs text-muted-foreground sm:flex-row">
+                <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-dashed border-border pt-8 text-xs text-muted-foreground sm:flex-row">
                     <p>
                         © {new Date().getFullYear()} {SITE.company}. All rights reserved.
                     </p>
-                    <p>GST compliant invoicing · Pan-India wholesale supply</p>
+                    <p className="font-mono tracking-[0.08em]">GST compliant · Pan-India wholesale supply</p>
                 </div>
             </div>
         </footer>

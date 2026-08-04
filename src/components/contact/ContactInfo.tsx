@@ -37,7 +37,7 @@ const CARDS = [
 
 export function ContactInfo() {
     return (
-        <section id="contact-info" className="section-pad bg-surface">
+        <section id="contact-info" className="py-12 md:py-16  bg-surface">
             <div className="shell">
                 <Reveal className="mx-auto max-w-2xl text-center">
                     <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-primary">

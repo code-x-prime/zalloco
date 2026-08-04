@@ -2,8 +2,21 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
-import { IconMenu, IconX, IconPhone, IconMessageCircle, IconChevronDown, IconArrowRight, IconChevronRight } from "@tabler/icons-react";
+import {
+    IconMenu,
+    IconX,
+    IconPhone,
+    IconMessageCircle,
+    IconChevronDown,
+    IconArrowRight,
+    IconChevronRight,
+    IconWheat,
+    IconCoffee,
+    IconSparkles,
+    IconGridDots,
+} from "@tabler/icons-react";
 import { SITE } from "@/lib/site";
+import Image from "next/image";
 
 const NAV = [
     { label: "Home", href: "/" },
@@ -16,6 +29,7 @@ const NAV = [
 const CATEGORY_COLS = [
     {
         title: "Grocery & Staples",
+        icon: IconWheat,
         items: [
             { label: "Rice & Grains", href: "/categories#grocery" },
             { label: "Flour", href: "/categories#grocery" },
@@ -25,6 +39,7 @@ const CATEGORY_COLS = [
     },
     {
         title: "Food & Beverages",
+        icon: IconCoffee,
         items: [
             { label: "Snacks", href: "/categories#food" },
             { label: "Tea & Coffee", href: "/categories#food" },
@@ -34,6 +49,7 @@ const CATEGORY_COLS = [
     },
     {
         title: "Household",
+        icon: IconSparkles,
         items: [
             { label: "Cleaning", href: "/categories#household" },
             { label: "Laundry", href: "/categories#household" },
@@ -43,6 +59,7 @@ const CATEGORY_COLS = [
     },
     {
         title: "More Categories",
+        icon: IconGridDots,
         items: [
             { label: "Beauty", href: "/categories#beauty" },
             { label: "Electronics", href: "/categories#electronics" },
@@ -73,11 +90,11 @@ function MegaMenuDropdown({ children, onClose }: { children: React.ReactNode; on
     return (
         <motion.div
             ref={ref}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 6 }}
-            transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute left-1/2 top-full z-50 mt-2 w-max -translate-x-1/2"
+            initial={{ opacity: 0, y: 10, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 8, scale: 0.98 }}
+            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+            className="absolute left-1/2 top-full z-50 mt-3 w-max -translate-x-1/2"
         >
             {children}
         </motion.div>
@@ -97,6 +114,14 @@ export function Header() {
         return () => window.removeEventListener("scroll", onScroll);
     }, []);
 
+    // lock body scroll while the mobile drawer is open
+    useEffect(() => {
+        document.body.style.overflow = open ? "hidden" : "";
+        return () => {
+            document.body.style.overflow = "";
+        };
+    }, [open]);
+
     const handleNavEnter = (label: string) => {
         if (closeTimer.current) clearTimeout(closeTimer.current);
         setHoveredNav(label);
@@ -114,49 +139,61 @@ export function Header() {
             className="fixed inset-x-0 top-0 z-50"
         >
             <div
-                className={`transition-all duration-500 ${scrolled
-                        ? "glass-panel border-b shadow-[var(--shadow-soft)]"
-                        : "border-b border-transparent bg-background"
+                className={`relative transition-all duration-500 ${scrolled ? "glass-panel border-b shadow-[var(--shadow-soft)]" : "border-b border-transparent bg-background"
                     }`}
             >
+                {/* Hairline accent that only appears once scrolled — a quiet signature rather than a loud one */}
+                <div
+                    aria-hidden
+                    className={`pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-primary/70 to-transparent transition-opacity duration-500 ${scrolled ? "opacity-100" : "opacity-0"
+                        }`}
+                />
+
                 <div className="shell">
                     <div
                         className={`flex items-center justify-between gap-6 transition-all duration-500 ${scrolled ? "h-16" : "h-20"
                             }`}
                     >
-                        <Link href="/" className="flex min-w-0 shrink-0 items-center gap-3">
-                            <img
-                                src="/Zalloco-Logo1.png"
-                                alt="Zalloco Industries logo"
-                                width={160}
-                                height={160}
-                                className={`transition-all duration-500 ${scrolled ? "h-10 w-10" : "h-12 w-12"} object-contain`}
-                            />
-                            <span className="hidden min-w-0 flex-col leading-tight sm:flex">
-                                <span className="truncate text-base font-bold tracking-[-0.02em] text-primary">
-                                    ZALLOCO
-                                </span>
-                                <span className="truncate text-[10px] font-medium uppercase tracking-[0.22em] text-muted-foreground">
-                                    Industries Pvt Ltd
-                                </span>
+                        <Link href="/" className="group flex min-w-0 shrink-0 items-center gap-3">
+                            <span className="relative shrink-0">
+                                <span className="absolute inset-0 -z-10 scale-90 rounded-full bg-primary/10 opacity-0 blur-md transition-all duration-300 group-hover:scale-125 group-hover:opacity-100" />
+                                <Image
+                                    src="/Zalloco-Logo1.png"
+                                    alt="Zalloco Industries logo"
+                                    width={160}
+                                    height={160}
+                                    className={`object-contain transition-all duration-500 ${scrolled ? "h-16 w-16" : "h-24 w-24"}`}
+                                />
                             </span>
+
                         </Link>
 
                         {/* Desktop nav */}
-                        <nav className="hidden items-center gap-1 lg:flex">
+                        <nav className="hidden items-center gap-1 lg:flex" onMouseLeave={handleNavLeave}>
                             {NAV.map((item) => (
                                 <div
                                     key={item.href}
                                     className="relative"
-                                    onMouseEnter={() => item.hasDropdown && handleNavEnter(item.label)}
-                                    onMouseLeave={() => item.hasDropdown && handleNavLeave()}
+                                    onMouseEnter={() => handleNavEnter(item.label)}
                                 >
                                     <Link
                                         href={item.href}
-                                        className="relative flex items-center gap-1 rounded-lg px-4 py-2 text-sm font-medium text-muted-foreground transition-colors duration-300 hover:text-primary"
+                                        className="relative flex items-center gap-1 rounded-lg px-4 py-2 text-sm font-medium text-muted-foreground transition-colors duration-200 hover:text-primary"
                                     >
+                                        {hoveredNav === item.label && (
+                                            <motion.span
+                                                layoutId="nav-highlight"
+                                                className="absolute inset-0 rounded-lg bg-primary/[0.06]"
+                                                transition={{ type: "spring", stiffness: 420, damping: 34 }}
+                                            />
+                                        )}
                                         <span className="relative z-10">{item.label}</span>
-                                        {item.hasDropdown && <IconChevronDown className="h-3.5 w-3.5" />}
+                                        {item.hasDropdown && (
+                                            <IconChevronDown
+                                                className={`relative z-10 h-3.5 w-3.5 transition-transform duration-200 ${hoveredNav === item.label ? "rotate-180" : ""
+                                                    }`}
+                                            />
+                                        )}
                                     </Link>
 
                                     {/* Categories mega menu */}
@@ -164,22 +201,28 @@ export function Header() {
                                         <AnimatePresence>
                                             {hoveredNav === "Categories" && (
                                                 <MegaMenuDropdown onClose={() => setHoveredNav(null)}>
-                                                    <div className="w-[560px] rounded-xl border border-border bg-background p-5 shadow-2xl">
-                                                        <div className="grid grid-cols-4 gap-5">
+                                                    <div className="w-[580px] overflow-hidden rounded-2xl border border-border bg-background shadow-2xl">
+                                                        <div className="grid grid-cols-4 gap-6 p-6">
                                                             {CATEGORY_COLS.map((col) => (
                                                                 <div key={col.title}>
-                                                                    <p className="mb-2.5 text-[11px] font-bold uppercase tracking-[0.12em] text-primary">
-                                                                        {col.title}
-                                                                    </p>
+                                                                    <div className="mb-3 flex items-center gap-2">
+                                                                        <span className="grid h-7 w-7 place-items-center rounded-lg bg-primary/10 text-primary">
+                                                                            <col.icon className="h-4 w-4" strokeWidth={1.8} />
+                                                                        </span>
+                                                                        <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-primary">
+                                                                            {col.title}
+                                                                        </p>
+                                                                    </div>
                                                                     <ul className="space-y-0.5">
                                                                         {col.items.map((ci) => (
                                                                             <li key={ci.label}>
                                                                                 <Link
                                                                                     href={ci.href}
                                                                                     onClick={() => setHoveredNav(null)}
-                                                                                    className="flex items-center justify-between rounded-md px-2.5 py-1.5 text-sm text-muted-foreground transition-all duration-200 hover:bg-primary/5 hover:text-primary"
+                                                                                    className="group/item flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-sm text-muted-foreground transition-all duration-200 hover:translate-x-0.5 hover:bg-primary/5 hover:text-primary"
                                                                                 >
                                                                                     {ci.label}
+                                                                                    <IconChevronRight className="h-3 w-3 opacity-0 transition-opacity duration-200 group-hover/item:opacity-100" />
                                                                                 </Link>
                                                                             </li>
                                                                         ))}
@@ -187,14 +230,15 @@ export function Header() {
                                                                 </div>
                                                             ))}
                                                         </div>
-                                                        <div className="mt-4 flex items-center justify-between border-t border-border pt-3">
+                                                        <div className="flex items-center justify-between border-t border-border bg-surface/60 px-6 py-3.5">
                                                             <p className="text-xs text-muted-foreground">15 categories, 500+ products</p>
                                                             <Link
                                                                 href="/categories"
                                                                 onClick={() => setHoveredNav(null)}
-                                                                className="flex items-center gap-1 text-xs font-semibold text-primary transition-colors hover:text-accent"
+                                                                className="group/cta flex items-center gap-1 text-xs font-semibold text-primary transition-colors hover:text-accent"
                                                             >
-                                                                View All <IconArrowRight className="h-3.5 w-3.5" />
+                                                                View All
+                                                                <IconArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover/cta:translate-x-0.5" />
                                                             </Link>
                                                         </div>
                                                     </div>
@@ -208,38 +252,38 @@ export function Header() {
                                         <AnimatePresence>
                                             {hoveredNav === "Products" && (
                                                 <MegaMenuDropdown onClose={() => setHoveredNav(null)}>
-                                                    <div className="w-[380px] rounded-xl border border-border bg-background p-4 shadow-2xl">
-                                                        <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.12em] text-primary">
+                                                    <div className="w-[380px] overflow-hidden rounded-2xl border border-border bg-background shadow-2xl">
+                                                        <p className="px-4 pt-4 text-[11px] font-bold uppercase tracking-[0.1em] text-primary">
                                                             Featured Products
                                                         </p>
-                                                        <div className="space-y-0.5">
+                                                        <div className="space-y-0.5 p-4 pt-2.5">
                                                             {FEATURED_PRODUCTS.map((p) => (
                                                                 <Link
                                                                     key={p.name}
                                                                     href="/products"
                                                                     onClick={() => setHoveredNav(null)}
-                                                                    className="flex items-center gap-3 rounded-lg px-3 py-2 transition-all duration-200 hover:bg-primary/5"
+                                                                    className="group/item flex items-center gap-3 rounded-lg px-2 py-2 transition-all duration-200 hover:bg-primary/5"
                                                                 >
                                                                     <img
                                                                         src={p.image}
                                                                         alt={p.name}
                                                                         width={80}
                                                                         height={80}
-                                                                        className="h-10 w-10 shrink-0 rounded-lg object-cover"
+                                                                        className="h-11 w-11 shrink-0 rounded-lg object-cover ring-1 ring-border transition-all duration-200 group-hover/item:ring-primary/40"
                                                                     />
                                                                     <div className="min-w-0 flex-1">
                                                                         <p className="truncate text-sm font-semibold text-foreground">{p.name}</p>
                                                                         <p className="truncate text-xs text-muted-foreground">{p.desc}</p>
                                                                     </div>
-                                                                    <IconChevronRight className="h-4 w-4 shrink-0 text-muted-foreground" />
+                                                                    <IconChevronRight className="h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200 group-hover/item:translate-x-0.5 group-hover/item:text-primary" />
                                                                 </Link>
                                                             ))}
                                                         </div>
-                                                        <div className="mt-3 border-t border-border pt-3">
+                                                        <div className="border-t border-border p-4 pt-3">
                                                             <Link
                                                                 href="/products"
                                                                 onClick={() => setHoveredNav(null)}
-                                                                className="flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-accent"
+                                                                className="flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white shadow-[0_4px_14px_var(--shadow-color,rgba(0,0,0,0.15))] transition-colors hover:bg-accent"
                                                             >
                                                                 View All Products <IconArrowRight className="h-4 w-4" />
                                                             </Link>
@@ -254,7 +298,7 @@ export function Header() {
                         </nav>
 
                         <div className="hidden items-center gap-3 md:flex">
-                            <a href={SITE.phoneHref} className="btn-base btn-ghost !px-4 !py-2.5 text-sm">
+                            <a href={SITE.phoneHref} className="btn-base btn-ghost !gap-2 !px-4 !py-2.5 text-sm">
                                 <IconPhone className="h-4 w-4" />
                                 Call
                             </a>
@@ -262,7 +306,7 @@ export function Header() {
                                 href={SITE.whatsappHref}
                                 target="_blank"
                                 rel="noreferrer"
-                                className="btn-base btn-whatsapp !px-4 !py-2.5 text-sm"
+                                className="btn-base btn-whatsapp !gap-2 !px-4 !py-2.5 text-sm shadow-[0_4px_14px_rgba(37,211,102,0.28)] transition-transform duration-200 hover:-translate-y-0.5"
                             >
                                 <IconMessageCircle className="h-4 w-4" />
                                 WhatsApp
@@ -273,9 +317,20 @@ export function Header() {
                             type="button"
                             aria-label={open ? "Close menu" : "Open menu"}
                             onClick={() => setOpen((v) => !v)}
-                            className="grid h-11 w-11 shrink-0 place-items-center rounded-lg border border-border bg-background text-primary transition-colors hover:bg-surface lg:hidden"
+                            className="relative grid h-11 w-11 shrink-0 place-items-center rounded-lg border border-border bg-background text-primary transition-colors hover:bg-surface lg:hidden"
                         >
-                            {open ? <IconX className="h-5 w-5" /> : <IconMenu className="h-5 w-5" />}
+                            <AnimatePresence mode="wait" initial={false}>
+                                <motion.span
+                                    key={open ? "close" : "open"}
+                                    initial={{ rotate: -90, opacity: 0 }}
+                                    animate={{ rotate: 0, opacity: 1 }}
+                                    exit={{ rotate: 90, opacity: 0 }}
+                                    transition={{ duration: 0.18 }}
+                                    className="grid place-items-center"
+                                >
+                                    {open ? <IconX className="h-5 w-5" /> : <IconMenu className="h-5 w-5" />}
+                                </motion.span>
+                            </AnimatePresence>
                         </button>
                     </div>
                 </div>
@@ -318,20 +373,24 @@ function MobileNav({ onClose }: { onClose: () => void }) {
                 className="flex items-center justify-between rounded-lg px-3 py-3 text-base font-medium text-foreground transition-colors hover:bg-surface"
             >
                 Categories
-                <IconChevronDown className={`h-4 w-4 transition-transform duration-300 ${expanded === "categories" ? "rotate-180" : ""}`} />
+                <IconChevronDown className={`h-4 w-4 text-muted-foreground transition-transform duration-300 ${expanded === "categories" ? "rotate-180 text-primary" : ""}`} />
             </button>
-            <AnimatePresence>
+            <AnimatePresence initial={false}>
                 {expanded === "categories" && (
                     <motion.div
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="overflow-hidden pl-4"
+                        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                        className="overflow-hidden border-l border-border/70 pl-4"
                     >
-                        <Link href="/categories" onClick={onClose} className="block rounded-md px-3 py-2 text-sm text-muted-foreground hover:text-primary">All Categories</Link>
+                        <Link href="/categories" onClick={onClose} className="block rounded-md px-3 py-2 text-sm font-semibold text-primary">
+                            All Categories
+                        </Link>
                         {CATEGORY_COLS.flatMap((c) => c.items).slice(0, 6).map((ci) => (
-                            <Link key={ci.label} href={ci.href} onClick={onClose} className="block rounded-md px-3 py-2 text-sm text-muted-foreground hover:text-primary">{ci.label}</Link>
+                            <Link key={ci.label} href={ci.href} onClick={onClose} className="block rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-primary">
+                                {ci.label}
+                            </Link>
                         ))}
                     </motion.div>
                 )}
@@ -344,21 +403,23 @@ function MobileNav({ onClose }: { onClose: () => void }) {
                 className="flex items-center justify-between rounded-lg px-3 py-3 text-base font-medium text-foreground transition-colors hover:bg-surface"
             >
                 Products
-                <IconChevronDown className={`h-4 w-4 transition-transform duration-300 ${expanded === "products" ? "rotate-180" : ""}`} />
+                <IconChevronDown className={`h-4 w-4 text-muted-foreground transition-transform duration-300 ${expanded === "products" ? "rotate-180 text-primary" : ""}`} />
             </button>
-            <AnimatePresence>
+            <AnimatePresence initial={false}>
                 {expanded === "products" && (
                     <motion.div
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="overflow-hidden pl-4"
+                        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                        className="overflow-hidden border-l border-border/70 pl-4"
                     >
-                        <Link href="/products" onClick={onClose} className="block rounded-md px-3 py-2 text-sm text-muted-foreground hover:text-primary">All Products</Link>
+                        <Link href="/products" onClick={onClose} className="block rounded-md px-3 py-2 text-sm font-semibold text-primary">
+                            All Products
+                        </Link>
                         {FEATURED_PRODUCTS.map((p) => (
-                            <Link key={p.name} href="/products" onClick={onClose} className="flex items-center gap-3 rounded-md px-3 py-2 text-sm text-muted-foreground hover:text-primary">
-                                <img src={p.image} alt={p.name} width={40} height={40} className="h-8 w-8 rounded-lg object-cover" />
+                            <Link key={p.name} href="/products" onClick={onClose} className="flex items-center gap-3 rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-primary">
+                                <img src={p.image} alt={p.name} width={40} height={40} className="h-8 w-8 rounded-lg object-cover ring-1 ring-border" />
                                 {p.name}
                             </Link>
                         ))}
@@ -371,11 +432,11 @@ function MobileNav({ onClose }: { onClose: () => void }) {
             </Link>
 
             <div className="mt-3 grid grid-cols-2 gap-3">
-                <a href={SITE.phoneHref} className="btn-base btn-ghost">
+                <a href={SITE.phoneHref} className="btn-base btn-ghost !gap-2">
                     <IconPhone className="h-4 w-4" />
                     Call
                 </a>
-                <a href={SITE.whatsappHref} target="_blank" rel="noreferrer" className="btn-base btn-whatsapp">
+                <a href={SITE.whatsappHref} target="_blank" rel="noreferrer" className="btn-base btn-whatsapp !gap-2">
                     <IconMessageCircle className="h-4 w-4" />
                     WhatsApp
                 </a>

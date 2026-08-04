@@ -118,7 +118,7 @@ export function ContactForm() {
         "w-full rounded-xl border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 outline-none transition focus:ring-2 focus:ring-primary/20";
 
     return (
-        <section className="section-pad bg-background">
+        <section className="py-12 md:py-16  bg-background">
             <div className="shell">
                 <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr]">
                     {/* ─── LEFT: Form ─── */}

@@ -36,7 +36,7 @@ const ITEMS = [
 
 export function WhyChooseUs() {
     return (
-        <section className="section-pad">
+        <section className="py-12 md:py-16 ">
             <div className="shell">
                 <SectionHeading
                     eyebrow="Why Choose Us"
@@ -48,15 +48,22 @@ export function WhyChooseUs() {
                 <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                     {ITEMS.map((item, i) => (
                         <Reveal key={item.title} delay={(i % 3) * 0.08}>
-                            <div className="card-surface group relative h-full overflow-hidden p-8">
+                            <div className="card-surface group relative flex h-full flex-col overflow-hidden p-6 sm:p-8">
                                 <div className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 gradient-brand transition-transform duration-500 group-hover:scale-x-100" />
-                                <span className="icon-tile h-14 w-14 transition-transform duration-500 group-hover:-rotate-6">
-                                    <item.icon className="h-6 w-6" />
-                                </span>
-                                <h3 className="mt-7 text-xl font-semibold tracking-[-0.02em] text-foreground">
+
+                                <div className="flex items-start justify-between gap-3">
+                                    <span className="icon-tile h-12 w-12 shrink-0 transition-transform duration-500 group-hover:-rotate-6 sm:h-14 sm:w-14">
+                                        <item.icon className="h-5 w-5 sm:h-6 sm:w-6" />
+                                    </span>
+                                    <span className="font-mono text-[11px] font-medium tracking-[0.15em] text-muted-foreground">
+                                        CL.{String(i + 1).padStart(2, "0")}
+                                    </span>
+                                </div>
+
+                                <h3 className="mt-6 text-lg font-semibold tracking-[-0.02em] text-foreground sm:mt-7 sm:text-xl">
                                     {item.title}
                                 </h3>
-                                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
+                                <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
                             </div>
                         </Reveal>
                     ))}

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { SITE } from "@/lib/site";
-import { ContactHero } from "@/components/contact/Hero";
+import { PageHero } from "@/components/PageHero";
 import { ContactInfo } from "@/components/contact/ContactInfo";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { ContactFAQ } from "@/components/contact/FAQ";
@@ -47,12 +47,17 @@ const MAP_SCHEMA = {
 export default function ContactPage() {
     return (
         <>
-            <ContactHero />
+            <PageHero
+                eyebrow="CONTACT US"
+                title="Let's Build"
+                highlight="Business Together"
+                description="We are always ready for wholesale, retail and bulk inquiries. Reach out and let's discuss how we can serve your business."
+            />
             <ContactInfo />
             <ContactForm />
 
             {/* Map Section */}
-            <section className="section-pad bg-background">
+            <section className="py-12 md:py-16  bg-background">
                 <div className="shell">
                     <SectionHeading
                         eyebrow="Location"

@@ -4,7 +4,7 @@ import { SITE } from "@/lib/site";
 
 export function WholesaleBanner() {
     return (
-        <section className="section-pad">
+        <section className="py-12 md:py-16 ">
             <div className="shell">
                 <Reveal>
                     <div className="relative overflow-hidden rounded-[2rem] gradient-deep px-8 py-16 sm:px-14 lg:px-20 lg:py-24">

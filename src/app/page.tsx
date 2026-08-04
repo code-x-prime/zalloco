@@ -1,5 +1,6 @@
-import { Hero } from "@/components/Hero";
-import { Stats } from "@/components/Stats";
+import { Hero } from "@/components/home/Hero";
+import { BottomStats } from "@/components/home/BottomStats";
+// import { Stats } from "@/components/Stats";
 import { About } from "@/components/About";
 import { Categories } from "@/components/Categories";
 import { FeaturedProducts } from "@/components/FeaturedProducts";
@@ -13,7 +14,8 @@ export default function Home() {
     return (
         <main>
             <Hero />
-            <Stats />
+            <BottomStats />
+            {/* <Stats /> */}
             <About />
             <Categories />
             <FeaturedProducts />

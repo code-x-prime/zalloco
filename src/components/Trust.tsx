@@ -39,7 +39,7 @@ const CLIENTS = [
 
 export function Trust() {
     return (
-        <section className="section-pad bg-surface">
+        <section className="py-12 md:py-16  bg-surface">
             <div className="shell">
                 <SectionHeading
                     eyebrow="Client Trust"

@@ -26,7 +26,7 @@ const STEPS = [
 
 export function HowWeWork() {
     return (
-        <section className="section-pad bg-surface">
+        <section className="py-12 md:py-16  bg-surface">
             <div className="shell">
                 <SectionHeading
                     eyebrow="How We Work"
@@ -35,36 +35,37 @@ export function HowWeWork() {
                     description="Four clear steps from enquiry to delivered consignment — no hidden handoffs."
                 />
 
-                <div className="relative mt-16">
-                    <div
-                        aria-hidden
-                        className="absolute left-[27px] top-4 hidden h-[calc(100%-2rem)] w-px bg-linear-to-b from-accent/60 via-primary/30 to-transparent sm:block lg:left-1/2"
-                    />
-                    <div className="flex flex-col gap-8">
-                        {STEPS.map((step, i) => (
+                <div className="mx-auto mt-16 max-w-2xl">
+                    {STEPS.map((step, i) => {
+                        const isLast = i === STEPS.length - 1;
+                        return (
                             <Reveal key={step.title} delay={i * 0.1}>
-                                <div
-                                    className={`relative flex gap-6 sm:pl-0 lg:w-1/2 ${i % 2 === 0 ? "lg:pr-14" : "lg:ml-auto lg:flex-row-reverse lg:pl-14 lg:text-right"
-                                        }`}
-                                >
-                                    <div className="relative z-10 flex shrink-0 flex-col items-center">
-                                        <span className="icon-tile h-14 w-14 ring-8 ring-surface">
-                                            <step.icon className="h-6 w-6" />
+                                <div className="relative flex gap-5 sm:gap-6">
+                                    <div className="relative flex shrink-0 flex-col items-center">
+                                        <span className="icon-tile z-10 h-12 w-12 shrink-0 sm:h-14 sm:w-14">
+                                            <step.icon className="h-5 w-5 sm:h-6 sm:w-6" />
                                         </span>
-                                        <span className="mt-3 text-xs font-bold uppercase tracking-[0.18em] text-muted-foreground">
-                                            Step {i + 1}
-                                        </span>
+                                        {!isLast && (
+                                            <span
+                                                aria-hidden
+                                                className="my-2 w-px flex-1 bg-linear-to-b from-accent/60 via-primary/25 to-transparent"
+                                            />
+                                        )}
                                     </div>
-                                    <div className="card-surface min-w-0 flex-1 bg-background p-6">
-                                        <h3 className="text-lg font-semibold tracking-[-0.02em] text-foreground">
+
+                                    <div className={`card-surface min-w-0 flex-1 bg-background p-5 sm:p-6 ${isLast ? "" : "mb-8"}`}>
+                                        <span className="font-mono text-[11px] font-medium tracking-[0.15em] text-muted-foreground">
+                                            STEP {String(i + 1).padStart(2, "0")} / {String(STEPS.length).padStart(2, "0")}
+                                        </span>
+                                        <h3 className="mt-1.5 text-base font-semibold tracking-[-0.02em] text-foreground sm:text-lg">
                                             {step.title}
                                         </h3>
                                         <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.body}</p>
                                     </div>
                                 </div>
                             </Reveal>
-                        ))}
-                    </div>
+                        );
+                    })}
                 </div>
             </div>
         </section>
