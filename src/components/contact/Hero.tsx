@@ -97,7 +97,7 @@ export function ContactHero() {
                         rel="noopener noreferrer"
                         className="btn-base btn-whatsapp"
                     >
-                        <IconMessageCircle size={18} />
+                        <img src="/whatsapp.png" alt="WhatsApp" className="h-5 w-5 object-contain shrink-0" />
                         WhatsApp Us
                     </a>
                     <a href="mailto:Zallocoindustrys@gmail.com" className="btn-base btn-outline-light">

@@ -27,6 +27,7 @@ import {
 import { PageHero } from "@/components/PageHero";
 import { FAQ } from "@/components/FAQ";
 import { SITE } from "@/lib/site";
+import Image from "next/image";
 
 /* ------------------------------------------------------------------ */
 /*  Framer Motion variants                                            */
@@ -46,12 +47,48 @@ const fadeUp = {
 /* ------------------------------------------------------------------ */
 
 const CORE_VALUES = [
-    { icon: IconShieldCheck, title: "Integrity", body: "Transparent dealings, honest weights and ethical business practices at every level." },
-    { icon: IconCertificate, title: "Quality", body: "Batch-wise inspection on grade, moisture and packing before any consignment leaves." },
-    { icon: IconBrain, title: "Innovation", body: "Adopting modern logistics, digital invoicing and data-driven inventory management." },
-    { icon: IconHeartHandshake, title: "Customer first", body: "Every process is designed around our partner's convenience, timelines and margin." },
-    { icon: IconRocket, title: "Commitment", body: "Dispatch within 48 hours, dedicated account managers and zero compromise on timelines." },
-    { icon: IconHandStop, title: "Long-term partnership", body: "We invest in relationships, not one-off transactions — consistent pricing and reliability." },
+    {
+        id: "integrity",
+        icon: IconShieldCheck,
+        title: "Integrity",
+        body: "Transparent dealings, honest weights and ethical business practices at every level.",
+        image: "/val-integrity.png",
+    },
+    {
+        id: "quality",
+        icon: IconCertificate,
+        title: "Quality",
+        body: "Batch-wise inspection on grade, moisture and packing before any consignment leaves.",
+        image: "/val-quality.png",
+    },
+    {
+        id: "innovation",
+        icon: IconBrain,
+        title: "Innovation",
+        body: "Adopting modern logistics, digital invoicing and data-driven inventory management.",
+        image: "/val-innovation.png",
+    },
+    {
+        id: "customer",
+        icon: IconHeartHandshake,
+        title: "Customer first",
+        body: "Every process is designed around our partner's convenience, timelines and margin.",
+        image: "/val-customer.png",
+    },
+    {
+        id: "commitment",
+        icon: IconRocket,
+        title: "Commitment",
+        body: "Dispatch within 48 hours, dedicated account managers and zero compromise on timelines.",
+        image: "/val-commitment.png",
+    },
+    {
+        id: "partnership",
+        icon: IconHandStop,
+        title: "Long-term partnership",
+        body: "We invest in relationships, not one-off transactions — consistent pricing and reliability.",
+        image: "/val-partnership.png",
+    },
 ];
 
 const INDUSTRIES = [
@@ -319,19 +356,36 @@ export default function AboutPage() {
                                 viewport={{ once: true, margin: "-40px" }}
                                 variants={fadeUp}
                                 custom={i}
-                                className="card-surface group relative flex h-full flex-col overflow-hidden bg-background p-6 sm:p-8"
+                                className="card-surface group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-background transition-all duration-500 hover:-translate-y-1 hover:shadow-xl"
                             >
-                                <div className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 gradient-brand transition-transform duration-500 group-hover:scale-x-100" />
-                                <div className="flex items-start justify-between gap-3">
-                                    <span className="icon-tile h-12 w-12 shrink-0 transition-transform duration-500 group-hover:-rotate-6 sm:h-14 sm:w-14">
-                                        <v.icon className="h-5 w-5 sm:h-6 sm:w-6" />
-                                    </span>
-                                    <span className="font-mono text-[11px] font-medium tracking-[0.15em] text-muted-foreground">
+                                <div className="relative aspect-[16/10] w-full overflow-hidden bg-surface">
+                                    <Image
+                                        src={v.image}
+                                        alt={v.title}
+                                        loading="lazy"
+                                        width={500}
+                                        height={500}
+                                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-80" />
+                                    <span className="absolute left-3 top-3 rounded-full border border-border/50 bg-background/90 px-3 py-1 font-mono text-[10px] font-semibold tracking-[0.1em] text-primary backdrop-blur">
                                         CV.{String(i + 1).padStart(2, "0")}
                                     </span>
                                 </div>
-                                <h3 className="mt-6 text-lg font-semibold tracking-[-0.02em] text-foreground sm:mt-7 sm:text-xl">{v.title}</h3>
-                                <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">{v.body}</p>
+
+                                <div className="flex flex-1 flex-col p-6 sm:p-7">
+                                    <div className="flex items-center gap-3">
+                                        <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary transition-transform duration-300 group-hover:scale-110">
+                                            <v.icon className="h-4 w-4" />
+                                        </span>
+                                        <h3 className="text-xl font-bold tracking-[-0.02em] text-foreground">
+                                            {v.title}
+                                        </h3>
+                                    </div>
+                                    <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
+                                        {v.body}
+                                    </p>
+                                </div>
                             </motion.div>
                         ))}
                     </div>

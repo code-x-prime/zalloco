@@ -44,7 +44,7 @@ export function ContactCTA() {
                                     rel="noreferrer"
                                     className="btn-base btn-whatsapp w-full !py-4"
                                 >
-                                    <IconMessageCircle className="h-4 w-4" />
+                                    <img src="/whatsapp.png" alt="WhatsApp" className="h-5 w-5 object-contain shrink-0" />
                                     WhatsApp
                                 </a>
                             </div>

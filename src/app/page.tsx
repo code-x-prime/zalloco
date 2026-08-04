@@ -7,7 +7,7 @@ import { FeaturedProducts } from "@/components/FeaturedProducts";
 import { HowWeWork } from "@/components/HowWeWork";
 import { WhyChooseUs } from "@/components/WhyChooseUs";
 import { Trust } from "@/components/Trust";
-import { WholesaleBanner } from "@/components/WholesaleBanner";
+// import { WholesaleBanner } from "@/components/WholesaleBanner";
 import { ContactCTA } from "@/components/ContactCTA";
 
 export default function Home() {
@@ -22,7 +22,7 @@ export default function Home() {
             <HowWeWork />
             <WhyChooseUs />
             <Trust />
-            <WholesaleBanner />
+            {/* <WholesaleBanner /> */}
             <ContactCTA />
         </main>
     );

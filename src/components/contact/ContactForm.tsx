@@ -401,7 +401,7 @@ export function ContactForm() {
                                     rel="noopener noreferrer"
                                     className="btn-base btn-whatsapp flex-1"
                                 >
-                                    <IconBrandWhatsapp size={18} />
+                                    <img src="/whatsapp.png" alt="WhatsApp" className="h-5 w-5 object-contain shrink-0" />
                                     WhatsApp
                                 </a>
                                 <a href={SITE.mailtoHref} className="btn-base btn-ghost flex-1">

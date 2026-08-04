@@ -201,15 +201,15 @@ export function Header() {
                                         <AnimatePresence>
                                             {hoveredNav === "Categories" && (
                                                 <MegaMenuDropdown onClose={() => setHoveredNav(null)}>
-                                                    <div className="w-[580px] overflow-hidden rounded-2xl border border-border bg-background shadow-2xl">
-                                                        <div className="grid grid-cols-4 gap-6 p-6">
+                                                    <div className="w-[620px] overflow-hidden rounded-xl border border-border bg-background shadow-xl">
+                                                        <div className="grid grid-cols-4 gap-5 p-5">
                                                             {CATEGORY_COLS.map((col) => (
                                                                 <div key={col.title}>
-                                                                    <div className="mb-3 flex items-center gap-2">
-                                                                        <span className="grid h-7 w-7 place-items-center rounded-lg bg-primary/10 text-primary">
-                                                                            <col.icon className="h-4 w-4" strokeWidth={1.8} />
+                                                                    <div className="mb-2.5 flex items-center gap-2">
+                                                                        <span className="grid h-6 w-6 place-items-center rounded-md bg-primary/10 text-primary">
+                                                                            <col.icon className="h-3.5 w-3.5" strokeWidth={1.8} />
                                                                         </span>
-                                                                        <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-primary">
+                                                                        <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-primary">
                                                                             {col.title}
                                                                         </p>
                                                                     </div>
@@ -219,9 +219,9 @@ export function Header() {
                                                                                 <Link
                                                                                     href={ci.href}
                                                                                     onClick={() => setHoveredNav(null)}
-                                                                                    className="group/item flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-sm text-muted-foreground transition-all duration-200 hover:translate-x-0.5 hover:bg-primary/5 hover:text-primary"
+                                                                                    className="group/item flex items-center justify-between rounded-md px-2.5 py-1.5 text-xs text-muted-foreground transition-all duration-200 hover:bg-primary/5 hover:text-primary"
                                                                                 >
-                                                                                    {ci.label}
+                                                                                    <span>{ci.label}</span>
                                                                                     <IconChevronRight className="h-3 w-3 opacity-0 transition-opacity duration-200 group-hover/item:opacity-100" />
                                                                                 </Link>
                                                                             </li>
@@ -230,12 +230,12 @@ export function Header() {
                                                                 </div>
                                                             ))}
                                                         </div>
-                                                        <div className="flex items-center justify-between border-t border-border bg-surface/60 px-6 py-3.5">
-                                                            <p className="text-xs text-muted-foreground">15 categories, 500+ products</p>
+                                                        <div className="flex items-center justify-between border-t border-border bg-surface/80 px-5 py-3">
+                                                            <p className="font-mono text-[11px] text-muted-foreground">15 categories · 500+ products</p>
                                                             <Link
                                                                 href="/categories"
                                                                 onClick={() => setHoveredNav(null)}
-                                                                className="group/cta flex items-center gap-1 text-xs font-semibold text-primary transition-colors hover:text-accent"
+                                                                className="group/cta flex items-center gap-1.5 text-xs font-semibold text-primary transition-colors hover:text-accent"
                                                             >
                                                                 View All
                                                                 <IconArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover/cta:translate-x-0.5" />
@@ -252,40 +252,42 @@ export function Header() {
                                         <AnimatePresence>
                                             {hoveredNav === "Products" && (
                                                 <MegaMenuDropdown onClose={() => setHoveredNav(null)}>
-                                                    <div className="w-[380px] overflow-hidden rounded-2xl border border-border bg-background shadow-2xl">
-                                                        <p className="px-4 pt-4 text-[11px] font-bold uppercase tracking-[0.1em] text-primary">
-                                                            Featured Products
-                                                        </p>
-                                                        <div className="space-y-0.5 p-4 pt-2.5">
+                                                    <div className="w-[380px] overflow-hidden rounded-xl border border-border bg-background shadow-xl">
+                                                        <div className="border-b border-border bg-surface/50 px-4 py-3">
+                                                            <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-primary">
+                                                                Featured Products
+                                                            </p>
+                                                        </div>
+                                                        <div className="space-y-1 p-3">
                                                             {FEATURED_PRODUCTS.map((p) => (
                                                                 <Link
                                                                     key={p.name}
                                                                     href="/products"
                                                                     onClick={() => setHoveredNav(null)}
-                                                                    className="group/item flex items-center gap-3 rounded-lg px-2 py-2 transition-all duration-200 hover:bg-primary/5"
+                                                                    className="group/item flex items-center gap-3 rounded-lg p-2 transition-all duration-200 hover:bg-primary/5"
                                                                 >
                                                                     <img
                                                                         src={p.image}
                                                                         alt={p.name}
                                                                         width={80}
                                                                         height={80}
-                                                                        className="h-11 w-11 shrink-0 rounded-lg object-cover ring-1 ring-border transition-all duration-200 group-hover/item:ring-primary/40"
+                                                                        className="h-10 w-10 shrink-0 rounded-md object-cover ring-1 ring-border transition-all duration-200 group-hover/item:ring-primary/40"
                                                                     />
                                                                     <div className="min-w-0 flex-1">
-                                                                        <p className="truncate text-sm font-semibold text-foreground">{p.name}</p>
-                                                                        <p className="truncate text-xs text-muted-foreground">{p.desc}</p>
+                                                                        <p className="truncate text-xs font-semibold text-foreground">{p.name}</p>
+                                                                        <p className="truncate text-[11px] text-muted-foreground">{p.desc}</p>
                                                                     </div>
-                                                                    <IconChevronRight className="h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200 group-hover/item:translate-x-0.5 group-hover/item:text-primary" />
+                                                                    <IconChevronRight className="h-3.5 w-3.5 shrink-0 text-muted-foreground transition-transform duration-200 group-hover/item:translate-x-0.5 group-hover/item:text-primary" />
                                                                 </Link>
                                                             ))}
                                                         </div>
-                                                        <div className="border-t border-border p-4 pt-3">
+                                                        <div className="border-t border-border bg-surface/50 p-3">
                                                             <Link
                                                                 href="/products"
                                                                 onClick={() => setHoveredNav(null)}
-                                                                className="flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white shadow-[0_4px_14px_var(--shadow-color,rgba(0,0,0,0.15))] transition-colors hover:bg-accent"
+                                                                className="flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-xs font-semibold text-white transition-colors hover:bg-primary/90"
                                                             >
-                                                                View All Products <IconArrowRight className="h-4 w-4" />
+                                                                View All Products <IconArrowRight className="h-3.5 w-3.5" />
                                                             </Link>
                                                         </div>
                                                     </div>
@@ -308,7 +310,7 @@ export function Header() {
                                 rel="noreferrer"
                                 className="btn-base btn-whatsapp !gap-2 !px-4 !py-2.5 text-sm shadow-[0_4px_14px_rgba(37,211,102,0.28)] transition-transform duration-200 hover:-translate-y-0.5"
                             >
-                                <IconMessageCircle className="h-4 w-4" />
+                                <img src="/whatsapp.png" alt="WhatsApp" className="h-4 w-4 object-contain shrink-0" />
                                 WhatsApp
                             </a>
                         </div>
@@ -437,7 +439,7 @@ function MobileNav({ onClose }: { onClose: () => void }) {
                     Call
                 </a>
                 <a href={SITE.whatsappHref} target="_blank" rel="noreferrer" className="btn-base btn-whatsapp !gap-2">
-                    <IconMessageCircle className="h-4 w-4" />
+                    <img src="/whatsapp.png" alt="WhatsApp" className="h-4 w-4 object-contain shrink-0" />
                     WhatsApp
                 </a>
             </div>

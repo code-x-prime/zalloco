@@ -95,9 +95,9 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
                         href={quoteHref(product.name)}
                         target="_blank"
                         rel="noreferrer"
-                        className="flex items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-primary to-accent px-3 py-2.5 text-xs font-semibold text-white shadow-[var(--shadow-glow)] transition hover:-translate-y-0.5"
+                        className="flex items-center justify-center gap-1.5 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] px-3 py-2.5 text-xs font-semibold text-white shadow-[0_4px_14px_rgba(37,211,102,0.3)] transition hover:-translate-y-0.5"
                     >
-                        <IconMessageCircle size={14} />
+                        <img src="/whatsapp.png" alt="WhatsApp" className="h-4 w-4 object-contain shrink-0" />
                         WhatsApp
                     </a>
 

@@ -123,9 +123,9 @@ export function FAQ({
                                     href={ctaHref}
                                     target="_blank"
                                     rel="noreferrer"
-                                    className="btn-base btn-primary !px-7 !py-4"
+                                    className="btn-base btn-whatsapp !px-7 !py-4"
                                 >
-                                    <IconMessageCircle className="h-4 w-4" />
+                                    <img src="/whatsapp.png" alt="WhatsApp" className="h-5 w-5 object-contain shrink-0" />
                                     {ctaText}
                                 </a>
                             </motion.div>
