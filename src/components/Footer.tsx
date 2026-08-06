@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { IconMail, IconPhone, IconMapPin, IconBrandLinkedin, IconBrandInstagram, IconBrandFacebook, IconBrandTwitter } from "@tabler/icons-react";
+import { IconMail, IconPhone, IconMapPin, IconBrandLinkedin, IconBrandInstagram, IconBrandFacebook, IconBrandTwitter, IconClock } from "@tabler/icons-react";
 import { SITE } from "@/lib/site";
 
 const LINKS = [
@@ -39,7 +39,7 @@ export function Footer() {
             </div>
 
             <div className="shell relative py-16 lg:py-20">
-                <div className="grid gap-12 lg:grid-cols-[1.5fr_1fr_1fr_1.2fr]">
+                <div className="grid gap-12 lg:grid-cols-[1.5fr_1fr_1fr_1.3fr]">
                     <div>
                         <Link href="/" className="flex min-w-0 items-center gap-3">
                             <img
@@ -59,11 +59,15 @@ export function Footer() {
                                 </p>
                             </div>
                         </Link>
-                        <p className="mt-6 max-w-sm text-sm leading-relaxed text-muted-foreground">
+                        <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
                             Import, export and wholesale distribution of grocery, FMCG, household and industrial
                             products for businesses across India. Quality-checked stock, transparent pricing and
                             dependable dispatch.
                         </p>
+                        <div className="mt-4 space-y-1 text-xs text-muted-foreground">
+                            <p><span className="font-semibold text-foreground">CIN:</span> {SITE.cin}</p>
+                            <p><span className="font-semibold text-foreground">GSTIN:</span> {SITE.gstin}</p>
+                        </div>
                         <div className="mt-6 flex gap-3">
                             {SOCIALS.map((s) => (
                                 <a
@@ -134,7 +138,10 @@ export function Footer() {
                                     className="flex items-start gap-3 transition-colors hover:text-primary"
                                 >
                                     <IconMail className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
-                                    <span className="break-all">{SITE.email}</span>
+                                    <div className="flex flex-col gap-0.5">
+                                        <span className="break-all">{SITE.email}</span>
+                                        <span className="break-all text-xs opacity-80">{SITE.secondaryEmail}</span>
+                                    </div>
                                 </a>
                             </li>
                             <li>
@@ -150,6 +157,10 @@ export function Footer() {
                                 <IconMapPin className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
                                 {SITE.address}
                             </li>
+                            <li className="flex items-start gap-3 text-xs">
+                                <IconClock className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+                                <span>{SITE.officeHours}</span>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -158,7 +169,18 @@ export function Footer() {
                     <p>
                         © {new Date().getFullYear()} {SITE.company}. All rights reserved.
                     </p>
-                    <p className="font-mono tracking-[0.08em]">GST compliant · Pan-India wholesale supply</p>
+                    <p className="font-mono tracking-[0.08em]">GSTIN: {SITE.gstin} · Pan-India wholesale supply</p>
+                    <p>
+                        Designed & Developed by{" "}
+                        <a
+                            href="https://groxmedia.in/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-semibold text-foreground transition-colors hover:text-primary underline underline-offset-4 decoration-primary/40 hover:decoration-primary"
+                        >
+                            Grox Media
+                        </a>
+                    </p>
                 </div>
             </div>
         </footer>

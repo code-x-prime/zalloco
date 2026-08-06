@@ -4,32 +4,34 @@ import { IconPhone, IconMail, IconBuilding, IconClock } from "@tabler/icons-reac
 import { SITE } from "@/lib/site";
 import { Reveal } from "@/components/Reveal";
 
+import { IconFileCheck } from "@tabler/icons-react";
+
 const CARDS = [
     {
         icon: IconPhone,
-        title: "Call Us",
-        lines: [SITE.phoneDisplay, "Mon–Sat · 9 AM – 6 PM IST"],
+        title: "Call & WhatsApp",
+        lines: [SITE.phoneDisplay, "Mon–Sat · 9:00 AM – 5:00 PM"],
         href: SITE.phoneHref,
         gradient: "from-[#0B4A8B] to-[#1565C0]",
     },
     {
         icon: IconMail,
         title: "Email Us",
-        lines: [SITE.email, "We reply within 24 hours"],
+        lines: [SITE.email, SITE.secondaryEmail],
         href: SITE.mailtoHref,
         gradient: "from-[#1565C0] to-[#2F80ED]",
     },
     {
         icon: IconBuilding,
-        title: "Visit Us",
-        lines: [SITE.address, "Industrial Area, India"],
-        href: "#map",
+        title: "Registered Office",
+        lines: [SITE.address],
+        href: undefined,
         gradient: "from-[#2F80ED] to-[#42A5F5]",
     },
     {
-        icon: IconClock,
-        title: "Business Hours",
-        lines: ["Mon – Sat: 9:00 AM – 6:00 PM", "Sunday: Closed"],
+        icon: IconFileCheck,
+        title: "Registration & GST",
+        lines: [`GSTIN: ${SITE.gstin}`, `CIN: ${SITE.cin}`],
         href: undefined,
         gradient: "from-[#0a1929] to-[#0B4A8B]",
     },

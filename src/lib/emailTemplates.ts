@@ -111,12 +111,12 @@ export function autoReplyTemplate(data: {
       </table>
     </div>
 
-    <p style="margin:0 0 20px;color:${BRAND.text};font-size:15px;line-height:1.6;${FONT}">Our business hours are <strong>Monday – Saturday, 9:00 AM – 6:00 PM IST</strong>. We typically respond within 24 business hours.</p>
+    <p style="margin:0 0 20px;color:${BRAND.text};font-size:15px;line-height:1.6;${FONT}">Our business hours are <strong>Monday – Saturday, 9:00 AM – 5:00 PM (Sunday Closed)</strong>. We typically respond within 24 business hours.</p>
 
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
       <tr>
         <td style="text-align:center;padding:4px;">
-          <a href="https://wa.me/919876543210" style="display:inline-block;background:${BRAND.success};color:#fff;padding:12px 28px;border-radius:10px;text-decoration:none;font-weight:600;font-size:13px;${FONT}">WhatsApp Us</a>
+          <a href="https://wa.me/918437213143" style="display:inline-block;background:${BRAND.success};color:#fff;padding:12px 28px;border-radius:10px;text-decoration:none;font-weight:600;font-size:13px;${FONT}">WhatsApp Us</a>
         </td>
         <td style="text-align:center;padding:4px;">
           <a href="mailto:Zallocoindustrys@gmail.com" style="display:inline-block;background:${BRAND.primary};color:#fff;padding:12px 28px;border-radius:10px;text-decoration:none;font-weight:600;font-size:13px;${FONT}">Email Us</a>
@@ -126,7 +126,7 @@ export function autoReplyTemplate(data: {
   </td></tr>
   <tr><td style="text-align:center;padding:20px 0 0;">
     <p style="margin:0 0 6px;color:${BRAND.muted};font-size:12px;${FONT}"><strong>Zalloco Industries Private Limited</strong></p>
-    <p style="margin:0;color:${BRAND.muted};font-size:11px;${FONT}">Corporate Office &middot; Industrial Area, India</p>
+    <p style="margin:0;color:${BRAND.muted};font-size:11px;${FONT}"># V.P.O. KHANDOOR, MOHIE, LUDHIANA-141103 (Punjab) India</p>
     ${socialRow()}
     <p style="margin:16px 0 0;color:${BRAND.muted};font-size:11px;${FONT}">&copy; ${new Date().getFullYear()} Zalloco Industries. All rights reserved.</p>
   </td></tr>

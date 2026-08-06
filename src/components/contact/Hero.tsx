@@ -3,6 +3,8 @@ import { motion } from "motion/react";
 import Link from "next/link";
 import { IconMessageCircle, IconArrowDown } from "@tabler/icons-react";
 
+import { SITE } from "@/lib/site";
+
 export function ContactHero() {
     return (
         <section className="relative flex min-h-[55vh] items-center overflow-hidden bg-gradient-to-br from-[#0a1929] via-[#0B4A8B] to-[#2F80ED]">
@@ -92,7 +94,7 @@ export function ContactHero() {
                     className="mt-8 flex flex-wrap gap-4"
                 >
                     <a
-                        href="https://wa.me/919876543210?text=Hello%20Zalloco%20Industries%2C%20I%20would%20like%20to%20discuss%20a%20bulk%20order."
+                        href={SITE.whatsappHref}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="btn-base btn-whatsapp"
@@ -100,7 +102,7 @@ export function ContactHero() {
                         <img src="/whatsapp.png" alt="WhatsApp" className="h-5 w-5 object-contain shrink-0" />
                         WhatsApp Us
                     </a>
-                    <a href="mailto:Zallocoindustrys@gmail.com" className="btn-base btn-outline-light">
+                    <a href={SITE.mailtoHref} className="btn-base btn-outline-light">
                         Send Email
                     </a>
                 </motion.div>
