@@ -7,44 +7,35 @@ import { IconArrowUpRight } from "@tabler/icons-react";
 
 export const metadata: Metadata = {
     title: "Product Categories — Zalloco Industries",
-    description: "Browse 15+ wholesale product categories including grocery, spices, household, personal care, electronics, and industrial supplies at Zalloco Industries.",
+    description: "Browse 9 wholesale product categories including grocery, spices, household, personal care, electronics, and industrial supplies at Zalloco Industries.",
     openGraph: { title: "Product Categories — Zalloco" },
 };
 
 const CATEGORY_CODE: Record<string, string> = {
     grocery: "GRC",
     spices: "SPC",
-    food: "FNB",
     household: "HHD",
     personal: "PSC",
-    beauty: "BTY",
     electronics: "ELC",
-    agriculture: "AGR",
     industrial: "IND",
     office: "OFC",
     home: "HOM",
-    fashion: "FSH",
-    baby: "BBY",
-    pet: "PET",
-    seasonal: "SSN",
+    "baby-pet": "BBY",
 };
 
+// Each `filter` matches a real category value used in the PRODUCTS list on
+// /products, and `products` is that list's actual count for the category —
+// keeps this page's cards, counts and links honest instead of placeholder copy.
 const CATEGORIES = [
-    { id: "grocery", name: "Grocery & Staples", desc: "Rice, wheat flour, pulses, sugar, salt, cooking oil, and all daily kitchen essentials.", img: "https://img.magnific.com/free-photo/healthy-food-concept_23-2148041188.jpg", products: "80+", filter: "Grocery" },
-    { id: "spices", name: "Spices & Masalas", desc: "Red chilli powder, turmeric, coriander, cumin, garam masala, and blended spices.", img: "https://img.magnific.com/free-photo/top-view-spices-table-cloth_23-2148033583.jpg", products: "45+", filter: "Spices" },
-    { id: "food", name: "Packaged Food & Beverages", desc: "Snacks, biscuits, noodles, tea, coffee, juices, and ready-to-eat items.", img: "https://img.magnific.com/free-photo/close-up-delicious-fast-food-table_23-2148041220.jpg", products: "120+", filter: "Grocery" },
-    { id: "household", name: "Household Essentials", desc: "Detergents, dishwash, floor cleaners, surface sprays, mops, and brooms.", img: "https://img.magnific.com/premium-photo/modern-kitchen-setup-with-detergent-soap-dinnerware-cookware-cleaning-supplies_1213593-5299.jpg", products: "60+", filter: "Household" },
-    { id: "personal", name: "Personal Care & Hygiene", desc: "Soaps, shampoo, toothpaste, body wash, deodorants, and skincare.", img: "https://img.magnific.com/free-photo/top-view-tropical-leaves-with-beauty-tools-cosmetics_23-2148179524.jpg", products: "90+", filter: "Personal Care" },
-    { id: "beauty", name: "Beauty & Cosmetics", desc: "Foundations, lipsticks, eyeliners, makeup kits, and beauty accessories.", img: "https://img.magnific.com/free-photo/overhead-view-cosmetics-makeup-natural-organic-products-dual-backdrop_23-2148031301.jpg", products: "55+", filter: "Personal Care" },
-    { id: "electronics", name: "Consumer Electronics", desc: "Mobile accessories, earbuds, chargers, power banks, LED bulbs, and cables.", img: "https://img.magnific.com/free-photo/white-technological-device-with-stand_23-2147923814.jpg", products: "70+", filter: "Electronics" },
-    { id: "agriculture", name: "Agriculture & Farming", desc: "Seeds, fertilizers, pesticides, tools, irrigation equipment, and livestock feed.", img: "https://img.magnific.com/premium-photo/view-agricultural-field_23-2151270632.jpg", products: "40+", filter: "Grocery" },
-    { id: "industrial", name: "Industrial & Hardware", desc: "Power tools, hand tools, fasteners, safety gear, lubricants, and adhesives.", img: "https://img.magnific.com/premium-photo/photo-industrial-tools-hardware_1298493-32078.jpg", products: "85+", filter: "Industrial" },
-    { id: "office", name: "Office & Stationery", desc: "Pens, paper, notebooks, printers, files, folders, and office accessories.", img: "https://img.magnific.com/free-photo/minimalist-black-white-office-desk-with-stationery_9975-133066.jpg", products: "65+", filter: "Office" },
-    { id: "home", name: "Home & Kitchen", desc: "Cookware, utensils, storage containers, organizers, and kitchen gadgets.", img: "https://img.magnific.com/free-photo/crockery-showcase-store-things-home_169016-20590.jpg", products: "75+", filter: "Home & Kitchen" },
-    { id: "fashion", name: "Fashion & Apparel", desc: "Men's wear, women's wear, kids' clothing, accessories, footwear, and ethnic wear.", img: "https://img.magnific.com/free-photo/young-handsome-man-choosing-cloth-shop_1303-19845.jpg", products: "50+", filter: "All" },
-    { id: "baby", name: "Baby & Kids", desc: "Diapers, baby food, toys, strollers, clothing, and nursery essentials.", img: "https://img.magnific.com/premium-photo/baby-nursery-with-accessories_155011-73.jpg", products: "45+", filter: "Baby & Pet" },
-    { id: "pet", name: "Pet Supplies", desc: "Pet food, grooming products, leashes, cages, toys, and veterinary items.", img: "https://img.magnific.com/premium-photo/cute-pet-accessories-flat-lay_23-2150135922.jpg", products: "35+", filter: "Baby & Pet" },
-    { id: "seasonal", name: "Seasonal & Festive", desc: "Diwali gift boxes, Holi colours, festival decorations, and seasonal items.", img: "https://img.magnific.com/free-photo/gift-boxes-fir-tree-branches_1150-19471.jpg", products: "30+", filter: "All" },
+    { id: "grocery", name: "Grocery & Staples", desc: "Wheat flour, makki atta, basmati rice, cooking oil, tea and coffee — daily kitchen essentials.", img: "/cat-grocery.jpg", products: "4", filter: "Grocery" },
+    { id: "spices", name: "Spices & Masalas", desc: "Red chilli powder, turmeric, coriander seeds and black pepper, ground and packed fresh.", img: "/cat-spices.jpg", products: "4", filter: "Spices" },
+    { id: "household", name: "Household Essentials", desc: "Detergent powder, toilet cleaner and antiseptic liquid for everyday home cleaning.", img: "/cat-household.jpg", products: "3", filter: "Household" },
+    { id: "personal", name: "Personal Care & Hygiene", desc: "Antibacterial soap and shampoo sachets for retail counters and daily hygiene.", img: "/cat-personal.jpg", products: "2", filter: "Personal Care" },
+    { id: "electronics", name: "Consumer Electronics", desc: "LED bulbs and wireless earbuds — fast-moving electronics for retail shelves.", img: "/cat-electronics.jpg", products: "2", filter: "Electronics" },
+    { id: "industrial", name: "Industrial & Hardware", desc: "Multi-piece tool kits and general-purpose adhesive for workshops and repairs.", img: "/cat-industrial.jpg", products: "2", filter: "Industrial" },
+    { id: "office", name: "Office & Stationery", desc: "Notebooks and pencil box sets for schools, offices and stationery retailers.", img: "/cat-office.jpg", products: "2", filter: "Office" },
+    { id: "home", name: "Home & Kitchen", desc: "Pressure cookers and mixer grinders — trusted kitchen appliances at wholesale rates.", img: "/cat-home.jpg", products: "2", filter: "Home & Kitchen" },
+    { id: "baby-pet", name: "Baby & Pet Supplies", desc: "Baby diapers and dog food — everyday essentials for family and pets.", img: "/cat-baby-pet.jpg", products: "2", filter: "Baby & Pet" },
 ];
 
 export default function CategoriesPage() {
@@ -52,7 +43,7 @@ export default function CategoriesPage() {
         <main className="pb-24">
             <PageHero
                 eyebrow="PG.02 / CATEGORIES"
-                title="Fifteen categories,"
+                title="Nine categories,"
                 highlight="one supplier."
                 description="One-stop wholesale source for grocery, household, industrial, and lifestyle products. Everything your store needs — under one roof."
             />
@@ -105,8 +96,8 @@ export default function CategoriesPage() {
                 <section className="mx-auto mt-24 max-w-5xl px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-2 divide-x divide-y divide-border overflow-hidden rounded-2xl border border-border bg-background sm:divide-y-0 md:grid-cols-4">
                         {[
-                            { value: "15+", label: "Categories" },
-                            { value: "500+", label: "Products" },
+                            { value: "9", label: "Categories" },
+                            { value: "25", label: "Products" },
                             { value: "2,000+", label: "Happy retailers" },
                             { value: "50+", label: "Brands" },
                         ].map((s, i) => (

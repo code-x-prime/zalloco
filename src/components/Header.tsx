@@ -26,45 +26,42 @@ const NAV = [
     { label: "Contact", href: "/contact" },
 ];
 
+// Each href's `category` value matches the real filter values used on
+// /products (see FILTERS in app/products/page.tsx) so clicking one actually
+// opens that category's products, instead of a dead #anchor.
 const CATEGORY_COLS = [
     {
-        title: "Grocery & Staples",
+        title: "Grocery & Spices",
         icon: IconWheat,
         items: [
-            { label: "Rice & Grains", href: "/categories#grocery" },
-            { label: "Flour", href: "/categories#grocery" },
-            { label: "Cooking Oil", href: "/categories#grocery" },
-            { label: "Sugar & Salt", href: "/categories#grocery" },
+            { label: "Grocery & Staples", href: "/products?category=Grocery" },
+            { label: "Spices & Masalas", href: "/products?category=Spices" },
         ],
     },
     {
-        title: "Food & Beverages",
-        icon: IconCoffee,
-        items: [
-            { label: "Snacks", href: "/categories#food" },
-            { label: "Tea & Coffee", href: "/categories#food" },
-            { label: "Spices", href: "/categories#food" },
-            { label: "Dairy", href: "/categories#food" },
-        ],
-    },
-    {
-        title: "Household",
+        title: "Home & Care",
         icon: IconSparkles,
         items: [
-            { label: "Cleaning", href: "/categories#household" },
-            { label: "Laundry", href: "/categories#household" },
-            { label: "Kitchen", href: "/categories#household" },
-            { label: "Storage", href: "/categories#household" },
+            { label: "Household Essentials", href: "/products?category=Household" },
+            { label: "Personal Care", href: "/products?category=Personal Care" },
+            { label: "Home & Kitchen", href: "/products?category=Home & Kitchen" },
+        ],
+    },
+    {
+        title: "Electronics & Office",
+        icon: IconCoffee,
+        items: [
+            { label: "Electronics", href: "/products?category=Electronics" },
+            { label: "Office & Stationery", href: "/products?category=Office" },
+            { label: "Industrial", href: "/products?category=Industrial" },
         ],
     },
     {
         title: "More Categories",
         icon: IconGridDots,
         items: [
-            { label: "Beauty", href: "/categories#beauty" },
-            { label: "Electronics", href: "/categories#electronics" },
-            { label: "Industrial", href: "/categories#industrial" },
-            { label: "Pet & Baby", href: "/categories#pet" },
+            { label: "Baby & Pet", href: "/products?category=Baby & Pet" },
+            { label: "View all categories", href: "/categories" },
         ],
     },
 ];
@@ -231,7 +228,7 @@ export function Header() {
                                                             ))}
                                                         </div>
                                                         <div className="flex items-center justify-between border-t border-border bg-surface/80 px-5 py-3">
-                                                            <p className="font-mono text-[11px] text-muted-foreground">15 categories · 500+ products</p>
+                                                            <p className="font-mono text-[11px] text-muted-foreground">9 categories · 25 products</p>
                                                             <Link
                                                                 href="/categories"
                                                                 onClick={() => setHoveredNav(null)}
