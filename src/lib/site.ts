@@ -11,7 +11,7 @@ export const SITE = {
         "https://wa.me/918437213143?text=Hello%20Zalloco%20Industries%2C%20I%20would%20like%20a%20wholesale%20quotation.",
     mailtoHref:
         "mailto:Zallocoindustrys@gmail.com?subject=Bulk%20Order%20Enquiry&body=Hello%20Zalloco%20Industries%2C%0A%0AWe%20would%20like%20a%20quotation%20for%20the%20following%20products%3A%0A",
-    address: "MOHIE, LUDHIANA-141103 (Punjab) India",
+    address: "Ludhiana, Punjab, India",
     officeHours: "Office Open 9:00 AM TO 5:00 PM (SUNDAY CLOSED)",
 } as const;
 

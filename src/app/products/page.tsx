@@ -1,6 +1,6 @@
 "use client";
-import { useState, useMemo, Suspense } from "react";
-import { useSearchParams } from "next/navigation";
+import { useState, useMemo, useEffect, Suspense } from "react";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { motion } from "motion/react";
 import { PageHero } from "@/components/PageHero";
 import { FAQ } from "@/components/FAQ";
@@ -32,7 +32,7 @@ const PRODUCTS = [
     { name: "Coriander Seeds 500g", category: "Spices", price: "₹75", unit: "500 g", img: "/p-coriander.jpg", desc: "Eagle-grade coriander seeds with strong aroma, export standard.", moq: "25 kg" },
     { name: "Sunflower Oil 1L", category: "Grocery", price: "₹145", unit: "1 L", img: "/p-sunflower-oil.jpg", desc: "Refined sunflower oil, light and healthy for everyday cooking.", moq: "50 bottles" },
     { name: "Surf Detergent 1kg", category: "Household", price: "₹125", unit: "1 kg", img: "/p-detergent.jpg", desc: "Premium detergent powder for deep cleaning and stain removal.", moq: "30 pcs" },
-    { name: "Harpic Toilet Cleaner 1L", category: "Household", price: "₹99", unit: "1 L", img: "/p-toilet-cleaner.jpg", desc: "Powerful toilet cleaner for sparkling clean bathrooms.", moq: "24 pcs" },
+    { name: " Toilet Cleaner 1L", category: "Household", price: "₹99", unit: "1 L", img: "/p-toilet-cleaner.jpg", desc: "Powerful toilet cleaner for sparkling clean bathrooms.", moq: "24 pcs" },
     { name: "Lifebuoy Soap 4x100g", category: "Personal Care", price: "₹88", unit: "4 pcs", img: "/p-soap.jpg", desc: "Antibacterial soap pack for daily protection and hygiene.", moq: "50 packs" },
     { name: "Shampoo Sachet Pack 30+2", category: "Personal Care", price: "₹165", unit: "32 pcs", img: "/p-shampoo-sachet.jpg", desc: "Value pack of shampoo sachets for retail counters.", moq: "20 packs" },
     { name: "Tata Tea Gold 1kg", category: "Grocery", price: "₹340", unit: "1 kg", img: "/p-tea.jpg", desc: "Premium CTC tea blend with rich aroma and strong colour.", moq: "20 packs" },
@@ -52,9 +52,27 @@ const PRODUCTS = [
 
 function ProductsContent() {
     const searchParams = useSearchParams();
-    const initialCategory = searchParams.get("category") || "All";
-    const [activeFilter, setActiveFilter] = useState(initialCategory);
+    const router = useRouter();
+    const pathname = usePathname();
+    const currentCategory = searchParams.get("category") || "All";
+    const [activeFilter, setActiveFilter] = useState(currentCategory);
     const [search, setSearch] = useState("");
+
+    useEffect(() => {
+        setActiveFilter(currentCategory);
+    }, [currentCategory]);
+
+    const handleFilterClick = (f: string) => {
+        setActiveFilter(f);
+        const params = new URLSearchParams(searchParams.toString());
+        if (f === "All") {
+            params.delete("category");
+        } else {
+            params.set("category", f);
+        }
+        const query = params.toString();
+        router.push(query ? `${pathname}?${query}` : pathname, { scroll: false });
+    };
 
     const filtered = useMemo(() => {
         return PRODUCTS.filter((p) => {
@@ -97,10 +115,10 @@ function ProductsContent() {
                             <button
                                 key={f}
                                 type="button"
-                                onClick={() => setActiveFilter(f)}
+                                onClick={() => handleFilterClick(f)}
                                 className={`rounded-full border px-4 py-1.5 text-sm font-medium transition-colors duration-200 ${activeFilter === f
-                                        ? "border-primary bg-primary text-white"
-                                        : "border-border bg-surface text-muted-foreground hover:border-primary/40 hover:text-primary"
+                                    ? "border-primary bg-primary text-white"
+                                    : "border-border bg-surface text-muted-foreground hover:border-primary/40 hover:text-primary"
                                     }`}
                             >
                                 {f}

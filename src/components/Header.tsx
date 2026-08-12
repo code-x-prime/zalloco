@@ -66,11 +66,32 @@ const CATEGORY_COLS = [
     },
 ];
 
-const FEATURED_PRODUCTS = [
+const ALL_PRODUCTS = [
     { name: "Wheat Flour 10kg", desc: "Chakki-fresh atta", image: "/p-wheat.jpg" },
-    { name: "Red Chilli Powder", desc: "Deep-red Teja blend", image: "/p-chilli.jpg" },
-    { name: "Turmeric Powder", desc: "High-curcumin Salem", image: "/p-turmeric.jpg" },
-    { name: "Black Pepper", desc: "Malabar whole peppercorns", image: "/p-pepper.jpg" },
+    { name: "Makki Atta 5kg", desc: "Stone-ground maize flour", image: "/p-makki.jpg" },
+    { name: "Basmati Rice 5kg", desc: "Long-grain milled rice", image: "/p-rice.jpg" },
+    { name: "Red Chilli Powder 1kg", desc: "Deep-red Teja blend", image: "/p-chilli.jpg" },
+    { name: "Turmeric Powder 500g", desc: "High-curcumin Salem", image: "/p-turmeric.jpg" },
+    { name: "Black Pepper 250g", desc: "Malabar whole peppercorns", image: "/p-pepper.jpg" },
+    { name: "Coriander Seeds 500g", desc: "Eagle-grade, export standard", image: "/p-coriander.jpg" },
+    { name: "Sunflower Oil 1L", desc: "Refined, light and healthy", image: "/p-sunflower-oil.jpg" },
+    { name: "Surf Detergent 1kg", desc: "Deep cleaning powder", image: "/p-detergent.jpg" },
+    { name: "Toilet Cleaner 1L", desc: "Sparkling clean bathrooms", image: "/p-toilet-cleaner.jpg" },
+    { name: "Lifebuoy Soap 4x100g", desc: "Antibacterial protection", image: "/p-soap.jpg" },
+    { name: "Shampoo Sachet Pack 30+2", desc: "Value pack for retail", image: "/p-shampoo-sachet.jpg" },
+    { name: "Tata Tea Gold 1kg", desc: "Premium CTC tea blend", image: "/p-tea.jpg" },
+    { name: "Nescafe Classic 100g", desc: "Instant coffee", image: "/p-coffee.jpg" },
+    { name: "Philips LED Bulb 9W", desc: "Energy-efficient bulb", image: "/p-led-bulb.jpg" },
+    { name: "Boat Airdopes 141", desc: "Wireless earbuds", image: "/p-earbuds.jpg" },
+    { name: "Classmate Notebook 240p", desc: "240-page notebook", image: "/p-notebook.jpg" },
+    { name: "Natraj Pencil Box 10pc", desc: "Complete pencil set", image: "/p-pencil-box.jpg" },
+    { name: "Dettol Antiseptic 750ml", desc: "First aid and hygiene", image: "/p-antiseptic.jpg" },
+    { name: "Pampers Diapers M34", desc: "12-hour dryness", image: "/p-diapers.jpg" },
+    { name: "Drools Dog Food 3kg", desc: "Complete nutrition", image: "/p-dog-food.jpg" },
+    { name: "Prestige Cooker 5L", desc: "Aluminium pressure cooker", image: "/p-cooker.jpg" },
+    { name: "Bajaj Mixer Grinder 750W", desc: "3 stainless steel jars", image: "/p-mixer-grinder.jpg" },
+    { name: "Stanley Tool Kit 45pc", desc: "Professional tool kit", image: "/p-tool-kit.jpg" },
+    { name: "Fevicol MR 500ml", desc: "General purpose adhesive", image: "/p-adhesive.jpg" },
 ];
 
 function MegaMenuDropdown({ children, onClose }: { children: React.ReactNode; onClose: () => void }) {
@@ -252,11 +273,11 @@ export function Header() {
                                                     <div className="w-[380px] overflow-hidden rounded-xl border border-border bg-background shadow-xl">
                                                         <div className="border-b border-border bg-surface/50 px-4 py-3">
                                                             <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-primary">
-                                                                Featured Products
+                                                                All Products ({ALL_PRODUCTS.length})
                                                             </p>
                                                         </div>
-                                                        <div className="space-y-1 p-3">
-                                                            {FEATURED_PRODUCTS.map((p) => (
+                                                        <div className="max-h-[60vh] space-y-1 overflow-y-auto p-3">
+                                                            {ALL_PRODUCTS.map((p) => (
                                                                 <Link
                                                                     key={p.name}
                                                                     href="/products"
@@ -416,12 +437,14 @@ function MobileNav({ onClose }: { onClose: () => void }) {
                         <Link href="/products" onClick={onClose} className="block rounded-md px-3 py-2 text-sm font-semibold text-primary">
                             All Products
                         </Link>
-                        {FEATURED_PRODUCTS.map((p) => (
+                        <div className="max-h-[50vh] overflow-y-auto">
+                        {ALL_PRODUCTS.map((p) => (
                             <Link key={p.name} href="/products" onClick={onClose} className="flex items-center gap-3 rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-primary">
                                 <img src={p.image} alt={p.name} width={40} height={40} className="h-8 w-8 rounded-lg object-cover ring-1 ring-border" />
                                 {p.name}
                             </Link>
                         ))}
+                        </div>
                     </motion.div>
                 )}
             </AnimatePresence>

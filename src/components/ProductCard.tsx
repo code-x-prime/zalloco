@@ -51,7 +51,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
                     src={product.img}
                     alt={product.name}
                     loading="lazy"
-                    className="aspect-[4/3] w-full object-cover grayscale-[15%] transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0"
+                    className="aspect-[4/3] w-full object-contain p-4 grayscale-[15%] transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0"
                 />
                 <span className="absolute left-3 top-3 rounded-full bg-background/90 px-2.5 py-1 font-mono text-[10px] font-semibold tracking-[0.1em] text-primary backdrop-blur">
                     {productCode}
